@@ -4,7 +4,7 @@
   <metadata>
     <id>cloudflared</id>
     <title>cloudflared</title>
-    <version>2021.10.3</version>
+    <version>2023.7.0</version>
     <authors>Cloudflare</authors>
     <owners>jpruskin</owners>
     <summary>The command-line client for Argo Tunnel, a tunneling daemon that proxies any local webserver through the Cloudflare network.</summary>
