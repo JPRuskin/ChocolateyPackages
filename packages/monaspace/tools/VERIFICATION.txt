@@ -1,0 +1,10 @@
+The monaspace.zip file within the tools directory was downloaded from the GitHub Releases page,
+though it has been renamed to minimize changes to the package scripts between versions.
+
+You can verify this by:
+
+- Navigating to https://github.com/githubnext/monaspace/releases
+- Finding the package version
+- Downloading the monaspace-<Version>.zip file
+- Using `Get-FileHash` to get the SHA256 hash of the downloaded file
+- Comparing the value to the hash of the zip in this package

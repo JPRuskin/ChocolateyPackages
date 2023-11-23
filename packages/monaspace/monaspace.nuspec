@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter
+enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+    <metadata>
+        <id>monaspace</id>
+        <title>Monaspace</title>
+        <version>$version$</version>
+        <authors>GitHub Next</authors>
+        <owners>jpruskin</owners>
+        <summary>An innovative superfamily of fonts for code</summary>
+        <description>The Monaspace type system is a monospaced type superfamily with some modern
+            tricks up its sleeve. It consists of five variable axis typefaces. Each one has a
+            distinct voice, but they are all metrics-compatible with one another, allowing you to
+            mix and match them for a more expressive typographical palette.
+
+            Letters on a grid is how we see our code. Why not make those letters better?
+
+            [installargs]
+
+            For further details on setup and configuration for your system, see [the
+            README](https://github.com/githubnext/monaspace#readme).
+        </description>
+        <releaseNotes>https://github.com/githubnext/monaspace/releases</releaseNotes>
+        <projectUrl>https://monaspace.githubnext.com/</projectUrl>
+        <iconUrl>https://rawcdn.githack.com/jpruskin/ChocolateyPackages/master/icons/monaspace.png</iconUrl>
+        <licenseUrl>https://github.com/githubnext/monaspace/blob/main/LICENSE</licenseUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <projectSourceUrl>https://github.com/githubnext/monaspace</projectSourceUrl>
+        <packageSourceUrl>https://github.com/JPRuskin/ChocolateyPackages/tree/main/packages/monaspace</packageSourceUrl>
+        <docsUrl>https://github.com/githubnext/monaspace#readme</docsUrl>
+        <bugTrackerUrl>https://github.com/githubnext/monaspace/issues</bugTrackerUrl>
+        <tags>font otf monospace typography</tags>
+    </metadata>
+    <files>
+        <file src="tools\**" target="tools" />
+    </files>
+</package>
