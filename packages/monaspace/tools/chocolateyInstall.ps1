@@ -11,9 +11,11 @@ $packageArgs = @{
 
 Get-ChocolateyUnzip @packageArgs
 
+$FontDirectory = (New-Object -ComObject Shell.Application).namespace(0x14).self.path
+
 foreach ($Font in Get-ChildItem -Path "$toolsDir/fonts" -Include ('*.otf', '*.ttf') -Recurse) {
     Write-Verbose "Installing Font - $($Font.BaseName)"
-    Copy-Item -Path $Font.FullName -Destination "C:\Windows\Fonts"
+    Copy-Item -Path $Font.FullName -Destination $FontDirectory
 
     # Register font for all users
     $FontRegistryEntry = @{
