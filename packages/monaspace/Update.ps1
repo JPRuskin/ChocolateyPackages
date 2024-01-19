@@ -3,8 +3,11 @@ param(
     [string]$PackageId = (Split-Path $PSScriptRoot -Leaf)
 )
 
+# We're going to need to use the Nuget Versioning to find the normalized version
+Add-Type -AssemblyName $env:ChocolateyInstall\choco.exe
+
 $LatestRelease = Invoke-RestMethod "https://api.github.com/repos/githubnext/monaspace/releases/latest"
-$LatestVersion = $LatestRelease.tag_name.TrimStart('v')
+$LatestVersion = [Chocolatey.NugetVersionExtensions]::ToNormalizedStringChecked($LatestRelease.tag_name.TrimStart('v'))
 
 $AvailablePackages = Invoke-RestMethod "https://community.chocolatey.org/api/v2/package-versions/$PackageId"
 

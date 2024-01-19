@@ -53,5 +53,8 @@ jobs:
         shell: pwsh
         env:
           NugetApiKey: ${{ secrets.CHOCOLATEYAPIKEY }}
-        run: choco push --source https://push.chocolatey.org/ --k="${{ env.NugetApiKey }}"
+        run: |
+          Get-ChildItem -Filter *.nupkg | ForEach-Object {
+            choco push $_.FullName --source https://push.chocolatey.org/ --k="${{ env.NugetApiKey }}"
+          }
         if: env.new_packages > 0 && env.NugetApiKey != ''
