@@ -11,9 +11,9 @@ $LatestVersion = $DisplayVersion -replace "-.+$"
 
 # This may not be accurate over time. If there are multiple revisions found (and we care), we should change this.
 
-$AvailablePackages = Invoke-RestMethod "https://community.chocolatey.org/api/v2/package-versions/$PackageId"
+$AvailablePackages = Invoke-RestMethod "https://community.chocolatey.org/api/v2/Packages()?`$filter=((Id eq '$PackageId'))&includePrerelease=true"
 
-if ($LatestVersion -in $AvailablePackages) {
+if ($LatestVersion -in $AvailablePackages.properties.version) {
     Write-Host "No update required for '$($PackageId)'"
     return
 }

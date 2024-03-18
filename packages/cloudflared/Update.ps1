@@ -6,9 +6,9 @@ param(
 $LatestRelease = Invoke-RestMethod "https://api.github.com/repos/cloudflare/cloudflared/releases/latest"
 $LatestVersion = $LatestRelease.tag_name.TrimStart('v')
 
-$AvailablePackages = Invoke-RestMethod "https://community.chocolatey.org/api/v2/package-versions/$PackageId"
+$AvailablePackages = Invoke-RestMethod "https://community.chocolatey.org/api/v2/Packages()?`$filter=((Id eq '$PackageId'))&includePrerelease=true"
 
-if ($LatestVersion -in $AvailablePackages) {
+if ($LatestVersion -in $AvailablePackages.properties.version) {
     Write-Host "No update required for '$($PackageId)'"
     return
 }
