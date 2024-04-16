@@ -16,6 +16,9 @@ $AvailablePackages = Invoke-RestMethod "https://community.chocolatey.org/api/v2/
 if ($LatestVersion -in $AvailablePackages.properties.version) {
     Write-Host "No update required for '$($PackageId)'"
     return
+} elseif (Invoke-RestMethod "https://community.chocolatey.org/api/v2/Packages()?`$filter=((Id eq '$PackageId' and Version eq '$LatestVersion'))&includePrerelease=true") {
+    Write-Host "$PackageId $LatestVersion has not yet been approved."
+    return
 }
 
 # Update the install script
