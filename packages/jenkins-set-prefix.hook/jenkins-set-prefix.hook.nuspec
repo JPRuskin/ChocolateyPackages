@@ -8,13 +8,13 @@
     <owners>jpruskin</owners>
     <title>Set Jenkins Prefix (Hook)</title>
     <authors>jpruskin</authors>
-    <projectUrl>https://github.com/jpruskin/ChocolateyPackages/tree/main/packages/jenkins-set-prefix.hook</projectUrl>
-    <copyright>2023 jpruskin</copyright>
+    <copyright>© 2023 James Ruskin</copyright>
     <licenseUrl>https://github.com/jpruskin/ChocolateyPackages/blob/main/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <projectSourceUrl>https://github.com/jpruskin/ChocolateyPackages/tree/main/packages/jenkins-set-prefix.hook</projectSourceUrl>
     <bugTrackerUrl>https://github.com/jpruskin/ChocolateyPackages/issues</bugTrackerUrl>
     <tags>Jenkins Hook</tags>
+    <releaseNotes>https://github.com/JPRuskin/ChocolateyPackages/commits/main/packages/jenkins-set-prefix.hook</releaseNotes>
     <summary>Update Jenkins installations to use a Prefix.</summary>
     <description>Due to the way Jenkins' MSI installs, changes to the Jenkins.xml configuration file can be unset (though backed up).
 

@@ -13,9 +13,11 @@ enclosed in quotation marks, you should use an editor that supports UTF-8, not t
         <licenseUrl>https://github.com/jpruskin/ChocolateyPackages/blob/master/LICENSE.md</licenseUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <projectSourceUrl>https://github.com/jpruskin/ChocolateyPackages/tree/master/packages/package-debug.extension</projectSourceUrl>
+        <packageSourceUrl>https://github.com/jpruskin/ChocolateyPackages/tree/master/packages/package-debug.extension</packageSourceUrl>
         <bugTrackerUrl>https://github.com/jpruskin/ChocolateyPackages/issues</bugTrackerUrl>
-        <tags>debug extension chocolatey package</tags>
+        <tags>debug extension package development</tags>
         <summary>Extension package to provide a debug connection during package development or testing.</summary>
+        <releaseNotes>https://github.com/JPRuskin/ChocolateyPackages/commits/main/packages/package-debug.extension</releaseNotes>
         <description><![CDATA[
       This extension provides logic that can be used to debug Chocolatey packages during development.
 
