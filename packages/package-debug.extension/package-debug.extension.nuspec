@@ -5,15 +5,15 @@ enclosed in quotation marks, you should use an editor that supports UTF-8, not t
     <metadata>
         <id>package-debug.extension</id>
         <version>1.0.0</version>
-        <owners>chocolatey-community</owners>
+        <owners>jpruskin</owners>
         <title>Chocolatey Package Debug Extension</title>
         <authors>jpruskin schusterfredl lindbergbrewery</authors>
-        <projectUrl>https://github.com/chocolatey-community/chocolatey-extensions</projectUrl>
+        <projectUrl>https://github.com/jpruskin/ChocolateyPackages</projectUrl>
         <copyright>© 2023 Chocolatey Community Maintainers</copyright>
-        <licenseUrl>https://github.com/chocolatey-community/chocolatey-extensions/blob/master/LICENSE.md</licenseUrl>
+        <licenseUrl>https://github.com/jpruskin/ChocolateyPackages/blob/master/LICENSE.md</licenseUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <projectSourceUrl>https://github.com/chocolatey-community/chocolatey-extensions/tree/master/src/package-debug.extension</projectSourceUrl>
-        <bugTrackerUrl>https://github.com/chocolatey-community/chocolatey-extensions/issues</bugTrackerUrl>
+        <projectSourceUrl>https://github.com/jpruskin/ChocolateyPackages/tree/master/packages/package-debug.extension</projectSourceUrl>
+        <bugTrackerUrl>https://github.com/jpruskin/ChocolateyPackages/issues</bugTrackerUrl>
         <tags>debug extension chocolatey package</tags>
         <summary>Extension package to provide a debug connection during package development or testing.</summary>
         <description><![CDATA[
@@ -54,17 +54,14 @@ enclosed in quotation marks, you should use an editor that supports UTF-8, not t
       ### Entering the Debug Session
 
       When your package waits for your debugger, you should see output similar to the following:
+
       ```plaintext
-      Now waiting for debug connection...
-      This is PID '38832', in runspace '1'.
+      Now waiting for debug connection. To enter debugging write:
+      Enter-PSHostProcess -Id '38832'
+      Debug-Runspace -Id '1'
       ```
 
-      You can then connect to that debugger by taking the PID and runspace, and running something similar to the following in a terminal:
-      ```powershell
-      Enter-PSHostProcess -Id 38832
-      Debug-Runspace -Id 1
-      ```
-      By copying and pasting the above into a terminal, you will be able to debug the package.
+      You can then connect to that debugger by running those lines in a terminal.
 
       You can also connect to this debug runtime in the PowerShell ISE or Visual Studio Code by using the PowerShell extension.
 
@@ -98,7 +95,6 @@ enclosed in quotation marks, you should use an editor that supports UTF-8, not t
 
       > NB: Your debug tool must match the elevation of the Chocolatey process.
     ]]></description>
-        <releaseNotes>https://github.com/chocolatey-community/chocolatey-extensions/blob/master/src/0debug.extension/CHANGELOG.md</releaseNotes>
     </metadata>
     <files>
         <file src="extensions\**" target="extensions" />

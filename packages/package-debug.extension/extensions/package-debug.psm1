@@ -21,7 +21,7 @@ if (Test-DebugRequest) {
     $Breakpoint = switch -Regex ($env:ChocoPackageDebug) {
         '^(Line[:=]?)?\d+$' { @{Line = $env:ChocoPackageDebug -replace '^(Line[:=]?)?' } }
 
-        # NOTE: default line numbers are according to chocolaetyScriptRunner of Chocolatey version 2.1
+        # NOTE: default line numbers are according to chocolateyScriptRunner of Chocolatey version 2.1
 
         # This waits before evaluating Prehook scripts
         '^Prehook$' { @{Line = Get-PatternLineNumberOrDefault $ScriptRunnerFile @('if \(\$preRunHookScripts\)', '& "\$prehookscript"') 54 } } 
@@ -33,16 +33,18 @@ if (Test-DebugRequest) {
         '^Posthook$' { @{Line = Get-PatternLineNumberOrDefault $ScriptRunnerFile @('if \(\$postRunHookScripts\)', '& "\$postRunHookScripts"') 89 } }
 
         # This waits at the start of Package scripts
-        default { @{Line = Get-PatternLineNumberOrDefault $ScriptRunnerFile '& "\$packageScript"' 63 } } 
+        default { @{Line = Get-PatternLineNumberOrDefault $ScriptRunnerFile '& "\$packageScript"' 63 } }
+
         '^Debug$' { 
-            @{Line = 1 }  # This is for debugging the extension.
+            @{Line = 1}  # This is for debugging the extension.
             Wait-Debugger
         }
     }
 
     Set-PSBreakpoint -Script $ScriptRunnerFile @Breakpoint -Action {
-        Write-Host 'Now waiting for debug connection...'
-        Write-Host "This is PID '$($PID)', in runspace '$([System.Management.Automation.Runspaces.Runspace]::DefaultRunSpace.Id)'"
+        Write-Host 'Now waiting for debug connection. To enter debugging write:'
+        Write-Host "Enter-PSHostProcess -Id '$($PID)"
+        Write-Host "Debug-Runspace -Id '$([System.Management.Automation.Runspaces.Runspace]::DefaultRunSpace.Id)'"
 
         Wait-Debugger
     }
