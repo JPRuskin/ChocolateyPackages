@@ -1,32 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
-  <metadata>
-    <id>cloudflared</id>
-    <title>cloudflared</title>
-    <version>$version$</version>
-    <authors>Cloudflare</authors>
-    <owners>jpruskin</owners>
-    <summary>The command-line client for Argo Tunnel, a tunneling daemon that proxies any local webserver through the Cloudflare network.</summary>
-    <description>You can connect applications, servers, and other resources to Cloudflare's network using Cloudflare Tunnel. When connected, Cloudflare can apply Zero Trust policies to determine who can reach the resource.
+    <metadata>
+        <id>cloudflared</id>
+        <title>cloudflared</title>
+        <version>$version$</version>
+        <authors>Cloudflare</authors>
+        <owners>jpruskin</owners>
+        <summary>The command-line client for Argo Tunnel, a tunneling daemon that proxies any local webserver through the Cloudflare network.</summary>
+        <description>You can connect applications, servers, and other resources to Cloudflare's network using Cloudflare Tunnel. When connected, Cloudflare can apply Zero Trust policies to determine who can reach the resource.
 
 When Cloudflare receives a request for your chosen hostname, it proxies the request through those connections to cloudflared. In turn, cloudflared proxies the request to your applications.
 
 This package is particularly suited to installing the CLI executable for use tunnelling to infrastructure using [Cloudflare Access](https://www.cloudflare.com/en-gb/teams/access/) as it contains only the standalone binary, and does not configure or create services.
 
 Please see [Useful commands](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/install-and-setup/tunnel-useful-commands) for usage examples.</description>
-    <releaseNotes>https://github.com/cloudflare/cloudflared/releases</releaseNotes>
-    <projectUrl>https://www.cloudflare.com/en-gb/products/tunnel/</projectUrl>
-    <iconUrl>https://rawcdn.githack.com/jpruskin/ChocolateyPackages/master/icons/cloudflared.svg</iconUrl>
-    <licenseUrl>https://github.com/cloudflare/cloudflared/blob/master/LICENSE</licenseUrl>
-    <requireLicenseAcceptance>true</requireLicenseAcceptance>
-    <projectSourceUrl>https://github.com/cloudflare/cloudflared</projectSourceUrl>
-    <packageSourceUrl>https://github.com/JPRuskin/ChocolateyPackages/tree/main/packages/cloudflared</packageSourceUrl>
-    <docsUrl>https://developers.cloudflare.com/cloudflare-one/connections/connect-apps</docsUrl>
-    <bugTrackerUrl>https://github.com/cloudflare/cloudflared/issues</bugTrackerUrl>
-    <tags>cloudflared cloudflare argo tunnel</tags>
-  </metadata>
-  <files>
-    <file src="tools\**" target="tools" />
-  </files>
+        <releaseNotes>https://github.com/cloudflare/cloudflared/releases</releaseNotes>
+        <projectUrl>https://www.cloudflare.com/en-gb/products/tunnel/</projectUrl>
+        <iconUrl>https://rawcdn.githack.com/jpruskin/ChocolateyPackages/master/icons/cloudflared.svg</iconUrl>
+        <licenseUrl>https://github.com/cloudflare/cloudflared/blob/master/LICENSE</licenseUrl>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <projectSourceUrl>https://github.com/cloudflare/cloudflared</projectSourceUrl>
+        <packageSourceUrl>https://github.com/JPRuskin/ChocolateyPackages/tree/main/packages/cloudflared</packageSourceUrl>
+        <docsUrl>https://developers.cloudflare.com/cloudflare-one/connections/connect-apps</docsUrl>
+        <bugTrackerUrl>https://github.com/cloudflare/cloudflared/issues</bugTrackerUrl>
+        <tags>cloudflared cloudflare argo tunnel</tags>
+    </metadata>
+    <files>
+        <file src="tools\**" target="tools" />
+    </files>
 </package>
