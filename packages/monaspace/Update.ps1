@@ -22,7 +22,7 @@ if ($LatestVersion -in $AvailablePackages.properties.version) {
 $ProgressPreference = "SilentlyContinue"
 $InstallFile = "$PSScriptRoot\tools\monaspace.zip"
 if (-not (Test-Path $InstallFile)) {
-    Invoke-WebRequest -Uri $LatestRelease.assets.Where{$_.name -eq "monaspace-v$($LatestVersion).zip"}.browser_download_url -OutFile $InstallFile
+    Invoke-WebRequest -Uri $LatestRelease.assets.Where{$_.name -eq "monaspace-v$($LatestRelease.tag_name.TrimStart('v')).zip"}.browser_download_url -OutFile $InstallFile
 }
 
 # Update the install script
