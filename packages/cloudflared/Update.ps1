@@ -24,8 +24,8 @@ $Replacements = @{
 }
 
 try {
-    $Replacements.checksum   = ($LatestRelease.body.Split("`n") -match 'cloudflared-windows-386.exe: (?<CheckSum>\w+)').Split(': ')[-1]
-    $Replacements.checksum64 = ($LatestRelease.body.Split("`n") -match 'cloudflared-windows-amd64.exe: (?<CheckSum>\w+)').Split(': ')[-1]
+    $Replacements.checksum   = ($LatestRelease.body.Split("`n") -match 'cloudflared-windows-386.exe: (?<CheckSum>\w+)').Split(': ')[-1].Trim()
+    $Replacements.checksum64 = ($LatestRelease.body.Split("`n") -match 'cloudflared-windows-amd64.exe: (?<CheckSum>\w+)').Split(': ')[-1].Trim()
 } catch {
     Write-Warning "Release body did not contain checksums. Falling back to manual calculation."
 
