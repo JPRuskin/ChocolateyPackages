@@ -11,6 +11,7 @@
     <copyright>© 2023 James Ruskin</copyright>
     <licenseUrl>https://github.com/jpruskin/ChocolateyPackages/blob/main/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectUrl>https://github.com/jpruskin/ChocolateyPackages/tree/main/packages/jenkins-set-prefix.hook</projectUrl>
     <projectSourceUrl>https://github.com/jpruskin/ChocolateyPackages/tree/main/packages/jenkins-set-prefix.hook</projectSourceUrl>
     <bugTrackerUrl>https://github.com/jpruskin/ChocolateyPackages/issues</bugTrackerUrl>
     <tags>Jenkins Hook</tags>

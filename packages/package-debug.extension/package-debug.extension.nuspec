@@ -6,10 +6,9 @@ enclosed in quotation marks, you should use an editor that supports UTF-8, not t
         <id>package-debug.extension</id>
         <version>1.0.0</version>
         <owners>jpruskin</owners>
-        <title>Chocolatey Package Debug Extension</title>
+        <title>Package Debug Extension</title>
         <authors>jpruskin schusterfredl lindbergbrewery</authors>
         <projectUrl>https://github.com/jpruskin/ChocolateyPackages</projectUrl>
-        <copyright>© 2023 Chocolatey Community Maintainers</copyright>
         <licenseUrl>https://github.com/jpruskin/ChocolateyPackages/blob/master/LICENSE.md</licenseUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <projectSourceUrl>https://github.com/jpruskin/ChocolateyPackages/tree/master/packages/package-debug.extension</projectSourceUrl>
@@ -19,83 +18,83 @@ enclosed in quotation marks, you should use an editor that supports UTF-8, not t
         <summary>Extension package to provide a debug connection during package development or testing.</summary>
         <releaseNotes>https://github.com/JPRuskin/ChocolateyPackages/commits/main/packages/package-debug.extension</releaseNotes>
         <description><![CDATA[
-      This extension provides logic that can be used to debug Chocolatey packages during development.
+This extension provides logic that can be used to debug Chocolatey packages during development.
 
-      ### Triggering Debug
-      To initiate debugging during package runtime, either pass a debug parameter (as shown below) or set `$env:ChocoPackageDebug` to any non-false value.
+### Triggering Debug
+To initiate debugging during package runtime, either pass a debug parameter (as shown below) or set `$env:ChocoPackageDebug` to any non-false value.
 
-      Example:
-      ```powershell
-      choco install <package-name> --params="'/Debug'"
-      ```
+Example:
+```powershell
+choco install package-id --params="'/Debug'"
+```
 
-      You can trigger the breakpoint at various different parts of the package by providing a specific value via `/Debug` or `$env:ChocoPackageDebug`.
+You can trigger the breakpoint at various different parts of the package by providing a specific value via `/Debug` or `$env:ChocoPackageDebug`.
 
-      > NB: Values passed to the package parameter will override the environment variable.
+*Note: Values passed to the package parameter will override the environment variable.*
 
-      You can set the breakpoint to a variety of predefined locations:
+You can set the breakpoint to a variety of predefined locations:
 
-      - `Prehook`: Waits before any prehook scripts are evaluated
-      - `Posthook`: Waits before any posthook scripts are evaluated
-      - `Package`: Waits before any package scripts (e.g. chocolateyInstall.ps1) are evaluated
+- `Prehook`: Waits before any prehook scripts are evaluated
+- `Posthook`: Waits before any posthook scripts are evaluated
+- `Package`: Waits before any package scripts (e.g. chocolateyInstall.ps1) are evaluated
 
-      You can provide these values by setting the environment variable, or passing them as the value of the `/Debug` parameter:
+You can provide these values by setting the environment variable, or passing them as the value of the `/Debug` parameter:
 
-      ```powershell
-      $env:ChocoPackageDebug = "Prehook"
-      choco install <package-name>
+```powershell
+$env:ChocoPackageDebug = "Prehook"
+choco install package-id
 
-      # or
+# or
 
-      $env:ChocoPackageDebug = $null
-      choco install <package-name> --params"/Debug=Posthook"
-      ```
-      
-      You can also set a specific line number in the `chocolateyScriptRunner.ps1` file, by setting a line number.
-      
-      ### Entering the Debug Session
+$env:ChocoPackageDebug = $null
+choco install package-id --params"/Debug=Posthook"
+```
 
-      When your package waits for your debugger, you should see output similar to the following:
+You can also set a specific line number in the `chocolateyScriptRunner.ps1` file, by setting a line number.
 
-      ```plaintext
-      Now waiting for debug connection. To enter debugging write:
-      Enter-PSHostProcess -Id '38832'
-      Debug-Runspace -Id '1'
-      ```
+### Entering the Debug Session
 
-      You can then connect to that debugger by running those lines in a terminal.
+When your package waits for your debugger, you should see output similar to the following:
 
-      You can also connect to this debug runtime in the PowerShell ISE or Visual Studio Code by using the PowerShell extension.
+```plaintext
+Now waiting for debug connection. To enter debugging write:
+Enter-PSHostProcess -Id '38832'
+Debug-Runspace -Id '1'
+```
 
-      This will provide a more in-depth debugging experience, including showing the script.
+You can then connect to that debugger by running those lines in a terminal.
 
-      #### Windows PowerShell ISE
+You can also connect to this debug runtime in the PowerShell ISE or Visual Studio Code by using the PowerShell extension.
 
-      As in the terminal above, to debug using Windows PowerShell ISE, use `Enter-PSHostProcess` and `Debug-Runspace` to enter the debugger.
+This will provide a more in-depth debugging experience, including showing the script.
 
-      #### VSCode
+#### Windows PowerShell ISE
 
-      For VSCode, you will require the PowerShell VSCode extension.
+As in the terminal above, to debug using Windows PowerShell ISE, use `Enter-PSHostProcess` and `Debug-Runspace` to enter the debugger.
 
-      If you then create a `launch.json` file within a `.vscode` folder in your workspace (or open the Command Palette and select `Debug: Add Configuration`) and create something similar to the following:
+#### VSCode
 
-      ```json
-      {
-          "version": "0.2.0",
-          "configurations": [
-              {
-                  "name": "PowerShell Attach Interactive Session Runspace",
-                  "type": "PowerShell",
-                  "request": "attach",
-                  "runspaceId": 1
-              }
-          ]
-      }
-      ```
+For VSCode, you will require the PowerShell VSCode extension.
 
-      You can then enter debug with `F5` (by default), and select the `choco` PID.
+If you then create a `launch.json` file within a `.vscode` folder in your workspace (or open the Command Palette and select `Debug: Add Configuration`) and create something similar to the following:
 
-      > NB: Your debug tool must match the elevation of the Chocolatey process.
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "PowerShell Attach Interactive Session Runspace",
+            "type": "PowerShell",
+            "request": "attach",
+            "runspaceId": 1
+        }
+    ]
+}
+```
+
+You can then enter debug with `F5` (by default), and select the `choco` PID.
+
+*Note: Your debug tool must match the elevation of the Chocolatey process.*
     ]]></description>
     </metadata>
     <files>
