@@ -12,8 +12,6 @@ $packageArgs = @{
 Get-ChocolateyUnzip @packageArgs
 
 $FontDirectory = (New-Object -ComObject Shell.Application).namespace(0x14).self.path
-$RegistryPath = 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts\'
-$RegisteredFonts = Get-ItemProperty -path $RegistryPath
 
 foreach ($Font in Get-ChildItem -Path "$toolsDir/fonts" -Include ('*.otf', '*.ttf') -Recurse) {
     Write-Verbose "Installing Font - $($Font.BaseName)"
@@ -22,14 +20,8 @@ foreach ($Font in Get-ChildItem -Path "$toolsDir/fonts" -Include ('*.otf', '*.tt
     # Register font for all users
     $FontRegistryEntry = @{
         Name         = $Font.BaseName
-        Path         = $RegistryPath
-        PropertyType = "String"
+        Path         = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts\"
         Value        = $Font.Name
     }
-    if (-not (Get-Member -InputObject $RegisteredFonts | ? Name -eq $FontRegistryEntry.Name)) {
-        Write-Host $FontRegistryEntry.Name
-        Get-Member -InputObject $RegisteredFonts | ? Name -eq $FontRegistryEntry.Name
-        Get-ItemProperty -Path $FontRegistryEntry.Path -Name $FontRegistryEntry.Name -ErrorAction SilentlyContinue
-        $null = New-ItemProperty @FontRegistryEntry
-    }
+    $null = Set-ItemProperty @FontRegistryEntry
 }
