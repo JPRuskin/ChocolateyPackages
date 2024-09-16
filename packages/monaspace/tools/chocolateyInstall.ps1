@@ -5,7 +5,7 @@ $packageArgs = @{
     PackageName    = $env:ChocolateyPackageName
     FileFullPath   = Join-Path $toolsDir "monaspace.zip"
     Destination    = "$toolsDir/fonts"
-    Checksum       = '3E08376FD0AECA1F851FDE0C08E18CA2D797F6A4C7A449670BF4D1270303C8F6'
+    Checksum       = '7FF2317C7BDAED8E81DCBE1314E6AB12AD9641B7DDF921E996A227FF4EC7752F'
     ChecksumType   = 'sha256'
 }
 
@@ -20,11 +20,8 @@ foreach ($Font in Get-ChildItem -Path "$toolsDir/fonts" -Include ('*.otf', '*.tt
     # Register font for all users
     $FontRegistryEntry = @{
         Name         = $Font.BaseName
-        Path         = "HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Fonts"
-        PropertyType = "String"
+        Path         = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts\"
         Value        = $Font.Name
     }
-    if (-not (Get-ItemProperty -Path $FontRegistryEntry.Path -Name $FontRegistryEntry.Name -ErrorAction SilentlyContinue)) {
-        $null = New-ItemProperty @FontRegistryEntry
-    }
+    $null = Set-ItemProperty @FontRegistryEntry
 }
