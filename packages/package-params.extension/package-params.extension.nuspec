@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter
+enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+    <metadata>
+        <id>package-params.extension</id>
+        <version>1.0.0</version>
+        <owners>jpruskin</owners>
+        <title>Package Params Extension</title>
+        <authors>jpruskin</authors>
+        <projectUrl>https://github.com/jpruskin/ChocolateyPackages</projectUrl>
+        <licenseUrl>https://github.com/jpruskin/ChocolateyPackages/blob/master/LICENSE.md</licenseUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <projectSourceUrl>https://github.com/jpruskin/ChocolateyPackages/tree/master/packages/package-params.extension</projectSourceUrl>
+        <packageSourceUrl>https://github.com/jpruskin/ChocolateyPackages/tree/master/packages/package-params.extension</packageSourceUrl>
+        <bugTrackerUrl>https://github.com/jpruskin/ChocolateyPackages/issues</bugTrackerUrl>
+        <tags>extension package development</tags>
+        <summary>Extension package to provide package parameter support.</summary>
+        <releaseNotes>https://github.com/JPRuskin/ChocolateyPackages/commits/main/packages/package-params.extension</releaseNotes>
+        <description><![CDATA[
+This extension provides logic that can be used to provide Chocolatey packages with Package Parameters during development, in versions prior to this being implemented in Chocolatey.
+    ]]></description>
+    </metadata>
+    <files>
+        <file src="extensions\**" target="extensions" />
+    </files>
+</package>
