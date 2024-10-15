@@ -1,8 +1,7 @@
 function GetPrefixValuePath {
     [CmdletBinding()]
     param()
-    $thisDir = Split-Path $PSCmdlet.MyInvocation.PSCommandPath -Parent
-    Join-Path (Convert-Path $thisDir\..\hook) "prefixvalue.txt"
+    Join-Path $PSScriptRoot "prefixvalue.txt"
 }
 
 function Get-PrefixValue {
