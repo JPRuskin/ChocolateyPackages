@@ -8,6 +8,7 @@ Add-Type -AssemblyName $env:ChocolateyInstall\choco.exe
 
 $LatestRelease = Invoke-RestMethod "https://api.github.com/repos/githubnext/monaspace/releases/latest"
 $LatestVersion = [Chocolatey.NugetVersionExtensions]::ToNormalizedStringChecked($LatestRelease.tag_name.TrimStart('v'))
+$LatestUrl = $LatestRelease.assets.Where{$_.name -eq "monaspace-v$($LatestRelease.tag_name.TrimStart('v')).zip"}.browser_download_url
 
 $AvailablePackages = Invoke-RestMethod "https://community.chocolatey.org/api/v2/Packages()?`$filter=((Id eq '$PackageId'))&includePrerelease=true"
 
@@ -20,17 +21,37 @@ if ($LatestVersion -in $AvailablePackages.properties.version) {
 }
 
 $ProgressPreference = "SilentlyContinue"
-$InstallFile = "$PSScriptRoot\tools\monaspace.zip"
-if (-not (Test-Path $InstallFile)) {
-    Invoke-WebRequest -Uri $LatestRelease.assets.Where{$_.name -eq "monaspace-v$($LatestRelease.tag_name.TrimStart('v')).zip"}.browser_download_url -OutFile $InstallFile
+
+$SizeOfPackage = [int]"$((Invoke-WebRequest -Uri $LatestUrl -METHOD Head).Headers."Content-Length")"
+if ($SizeOfPackage -gt 200MB) {
+    # Update the install script
+    $InstallPs1 = Get-Content $PSScriptRoot\chocolateyInstallDownload.ps1
+    $Replacements = @{
+        Url = $LatestUrl
+    }
+
+    # Get the file hash for the zip
+    $Replacements.checksum = (Get-FileHash -Algorithm SHA256 -InputStream (
+        [System.IO.MemoryStream]::New(
+        (Invoke-WebRequest $Replacements.Url).Content
+        )
+    )).Hash
+
+    Remove-Item $PSScriptRoot\tools\LICENSE.txt
+    Remove-Item $PSScriptRoot\tools\VERIFICATION.txt
+} else {
+    # Update the install script
+    $InstallPs1 = Get-Content $PSScriptRoot\tools\chocolateyInstall.ps1
+
+    $Replacements = @{}
+
+    $InstallFile = "$PSScriptRoot\tools\monaspace.zip"
+    if (-not (Test-Path $InstallFile)) {
+        Invoke-WebRequest -Uri $LatestUrl -OutFile $InstallFile
+    }
+
+    $Replacements.checksum = (Get-FileHash $InstallFile -Algorithm SHA256).Hash
 }
-
-# Update the install script
-$InstallPs1 = Get-Content $PSScriptRoot\tools\chocolateyInstall.ps1
-$Replacements = @{}
-
-# Get the file hash for the zip
-$Replacements.checksum = (Get-FileHash $InstallFile -Algorithm SHA256).Hash
 
 # Handle replacements
 $Replacements.GetEnumerator().ForEach{
