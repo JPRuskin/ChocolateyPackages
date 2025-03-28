@@ -24,4 +24,11 @@ foreach ($Font in Get-ChildItem -Path "$toolsDir/fonts" -Include ('*.otf', '*.tt
         Value        = $Font.Name
     }
     $null = Set-ItemProperty @FontRegistryEntry
+
+    # We leave the installed fonts in the tools directory so we can clean up later, but don't need the file content
+    Set-Content $Font.FullName -Value $null
 }
+
+# Cleanup Unrequired Files
+Get-Item $toolsDir/fonts/monaspace-*/docs | Remove-Item -Recurse
+Get-Item $toolsDir/fonts/monaspace-*/fonts/webfonts | Remove-Item -Recurse
