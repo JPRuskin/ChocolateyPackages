@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter
+enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+    <metadata>
+        <id>user-context.extension</id>
+        <version>1.0.0</version>
+        <owners>jpruskin</owners>
+        <title>User Context Extension</title>
+        <authors>jpruskin</authors>
+        <projectUrl>https://github.com/jpruskin/ChocolateyPackages</projectUrl>
+        <licenseUrl>https://github.com/jpruskin/ChocolateyPackages/blob/master/LICENSE.md</licenseUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <projectSourceUrl>https://github.com/jpruskin/ChocolateyPackages/tree/master/packages/user-context.extension</projectSourceUrl>
+        <packageSourceUrl>https://github.com/jpruskin/ChocolateyPackages/tree/master/packages/user-context.extension</packageSourceUrl>
+        <bugTrackerUrl>https://github.com/jpruskin/ChocolateyPackages/issues</bugTrackerUrl>
+        <tags>extension package business</tags>
+        <summary>Extension package to provide user-context support.</summary>
+        <releaseNotes>https://github.com/JPRuskin/ChocolateyPackages/commits/main/packages/user-context.extension</releaseNotes>
+        <description><![CDATA[## User Context
+This extension provides functions that can be used to run package-logic as a specific user, or for all currently logged in users.
+
+This can be used for:
+
+- Notifying all logged on users of something, e.g. updates.
+- Running a piece of code for a specific user
+- C4B: Running a task using the $env:USER_CONTEXT variable, to install user-level software.
+
+And many more things!
+
+## Usage
+
+
+    ]]></description>
+    </metadata>
+    <files>
+        <file src="extensions\**" target="extensions" />
+    </files>
+</package>

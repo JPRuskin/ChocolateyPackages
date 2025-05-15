@@ -1,20 +1,17 @@
 param(
     # A specific Chocolatey version that provides PackageParam functionality
-    $OverrideParamsBeforeVersion = "2.7.0"
+    $OverrideParamsBeforeVersion = "3"
 )
 
-function Get-PatternLineNumberOrDefault($File, $Pattern, $Default) {
-    $m = Select-String -Path $File -Pattern $Pattern
-    if ($m.Count) {
-        $m = $m | Select-Object -First 1
-        $m.LineNumber
-    } else {
-        $Default
-    }
-}
-
 $ScriptRunnerFile = Join-Path $env:ChocolateyInstall 'helpers\chocolateyScriptRunner.ps1'
-if ([version]$env:CHOCOLATEY_VERSION -lt $OverrideParamsBeforeVersion) {
+if (
+    # If our version of Chocolatey supports Package Params
+    [version]$env:CHOCOLATEY_VERSION -lt $OverrideParamsBeforeVersion -or
+    # and the command doesn't already exist in this runspace
+    (Get-Command Get-ScriptParameters -Module chocolateyInstaller -CommandType Cmdlet) -and
+    # and some parameters have been passed...
+    -not [string]::IsNullOrWhiteSpace(@("$env:ChocolateyPackageParameters", "$env:ChocolateyPackageParametersSensitive"))
+) {
     # This function is roughly replicated from the Chocolatey Helpers.
     # We don't want to override it unless we need to, in case of updates.
     function Get-ScriptParameters {
@@ -77,6 +74,16 @@ if ([version]$env:CHOCOLATEY_VERSION -lt $OverrideParamsBeforeVersion) {
         $splatHash
     }
 
+    function Get-PatternLineNumberOrDefault($File, $Pattern, $Default) {
+        $m = Select-String -Path $File -Pattern $Pattern
+        if ($m.Count) {
+            $m = $m | Select-Object -First 1
+            $m.LineNumber
+        } else {
+            $Default
+        }
+    }
+
     function Get-ScriptRunnerParameter {
         [CmdletBinding()]
         param(
@@ -101,32 +108,38 @@ if ([version]$env:CHOCOLATEY_VERSION -lt $OverrideParamsBeforeVersion) {
         ).Value -join ''
     }
 
+    function Out-RethrownError {
+        <#
+            .SYNOPSIS
+                Results in $? -eq $false and outputs the stored exception
+            .DESCRIPTION
+                We need the last result to be correctly evaluated in the script runner.
+                This results in that "error".
+        #>
+        throw $script:rethrownError
+    }
+
     $Breakpoint = @{
         Script = $ScriptRunnerFile
-        Line = Get-PatternLineNumberOrDefault $ScriptRunnerFile @('if \(\$packageScript\)', '& "\$packageScript"') 61
+        Line   = Get-PatternLineNumberOrDefault -File $ScriptRunnerFile -Pattern @('if \(\$packageScript\)', '& "\$packageScript"') -Default 61
         Action = {
-            Write-Host "Breakpoint hit $_ - RID $([Runspace]::DefaultRunspace.Id) - $packageScript"
+            Write-Debug "PackageParams Breakpoint hit: $_"
             if (-not $packageScript) {$packageScript = Get-ScriptRunnerParameter -Name 'packageScript'}
             if ($packageScript) {
                 Write-Debug "Finding Parameters for package script '$packageScript'"
                 $scriptParameters = Get-ScriptParameters -PackageParameters (Get-ScriptRunnerParameter 'packageParameters') -Script $packageScript
+
                 Write-Debug "Running package script '$packageScript' with $($scriptParameters.Keys.Count) matching package parameters"
-                & "$packageScript" @scriptParameters
-                # $packageScript = "Out-Null"  # We then set this to a no-op so it ignores the original attempt
-                Set-Variable -Name "packageScript" -Value "Out-Null" -Scope 1
+                try {
+                    & "$packageScript" @scriptParameters
+                    Set-Alias -Name $packageScript -Value "Out-Null" -Scope Global
+                } catch {
+                    $script:rethrownError = $_
+                    Set-Alias -Name $packageScript -Value "Out-RethrownError" -Scope Global
+                }
             }
         }
     }
 
-    #Set-PSBreakpoint @Breakpoint
-    $debugger = [Runspace]::DefaultRunspace.Debugger
-    $debugger.SetBreakpoints(
-        [System.Management.Automation.LineBreakpoint[]]@(
-            [System.Management.Automation.LineBreakpoint]::new(
-                $Breakpoint.Script,
-                [int]($Breakpoint.Line),
-                $Breakpoint.Action
-            )
-        )
-    )
+    Set-PSBreakpoint @Breakpoint
 }

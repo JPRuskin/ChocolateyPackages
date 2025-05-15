@@ -23,5 +23,6 @@ This extension provides logic that can be used to provide Chocolatey packages wi
     </metadata>
     <files>
         <file src="tools\**" target="tools" />
+        <file src="extensions\**" target="extensions" />
     </files>
 </package>

@@ -1,5 +1,6 @@
 param(
-    $SomeString = "Initial Parameter Value"
+    [Parameter(Mandatory)]
+    [string]$SomeString
 )
 
 Write-Host "This is the install script."
