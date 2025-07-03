@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>roon</id>
+    <version>$version$</version>
+    <owners>jpruskin</owners>
+    <title>Roon</title>
+    <authors>Roon Labs LLC</authors>
+    <copyright>© 2023 ROON LABS LLC</copyright>
+    <tags>roon music audiophile streaming subscription cross-platform</tags>
+    <summary>Roon is a digital media player and manager that is focused on audiophile quality playback.</summary>
+    <description># Roon
+
+Roon is a music management and listening solution that takes a very different approach to interacting with your music. Instead of seeing a spreadsheet-like view of your music (as with iTunes and almost all other media systems), Roon provides a very rich non-list based experience, using credits, artist relationships, genres, lyrics, concert/tour dates, artwork, and more to allow for an informative navigation and exploration of your library.
+
+Roon manages digital music files collected on hard drives and networked storage. It can also watch your iTunes library, and optionally integrate with the TIDAL, Qobuz, and KKBOX music streaming services.
+
+Roon cleans up your music library, upgrades the metadata associated with your music, and provides a user interface that is far richer than anything else out there. Roon makes music exploration and discovery both informative and fun.
+
+Roon provides no-compromise audio perfection. Bit perfect playback of lossy and lossless file formats, including high resolution audio content (PCM and DSD). Additional conveniences such as crossfading and volume normalization make it suitable for both concentrated listening sessions as well as social events.
+
+Roon manages your audio renderers (the things that make sound). Whether they be built-in sound devices, like your laptop's audio output, a USB connected DAC, or even networked audio devices.
+
+Roon is an application suite that must be installed. It is not a website. It runs on Macs, Windows PCs and Tablets, Linux PCs, Android Tablets, Apple iPads and iPhones. Support is provided on the Community Site, and membership details and configuration are provided on the Roon website.
+
+Roon uses your music files, Internet Radio streams, and content from the TIDAL and Qobuz streaming music services, but doesn't come with any music.
+
+And, Roon ARC is our free app that lets you enjoy Roon on-the-go. All you favorite music and Roon features are within reach no matter where your adventures take you! 
+
+The Roon software is constantly being improved and updates are always free of charge to licensed users.
+
+Full use of Roon requires subscription or purchase.</description>
+    <projectUrl>https://www.roon.app/</projectUrl>
+    <iconUrl>https://rawcdn.githack.com/JPRuskin/ChocolateyPackages/ec4a1e7fc27a6a131ef06acf5b615857421afd2d/icons/roon.svg</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <packageSourceUrl>https://github.com/JPRuskin/ChocolateyPackages/tree/main/packages/roon</packageSourceUrl>
+    <docsUrl>https://community.roonlabs.com/</docsUrl>
+    <releaseNotes>https://community.roonlabs.com/c/roon/software-release-notes/18</releaseNotes>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>
