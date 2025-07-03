@@ -1,6 +1,6 @@
 param(
     # A specific Chocolatey version that provides PackageParam functionality
-    $OverrideParamsBeforeVersion = "3"
+    $OverrideParamsBeforeVersion = "2.5"
 )
 
 $ScriptRunnerFile = Join-Path $env:ChocolateyInstall 'helpers\chocolateyScriptRunner.ps1'
@@ -8,13 +8,13 @@ if (
     # If our version of Chocolatey supports Package Params
     [version]$env:CHOCOLATEY_VERSION -lt $OverrideParamsBeforeVersion -or
     # and the command doesn't already exist in this runspace
-    (Get-Command Get-ScriptParameters -Module chocolateyInstaller -CommandType Cmdlet) -and
+    (Get-Command Get-PackageScriptParameters -Module chocolateyInstaller -CommandType Cmdlet) -and
     # and some parameters have been passed...
     -not [string]::IsNullOrWhiteSpace(@("$env:ChocolateyPackageParameters", "$env:ChocolateyPackageParametersSensitive"))
 ) {
     # This function is roughly replicated from the Chocolatey Helpers.
     # We don't want to override it unless we need to, in case of updates.
-    function Get-ScriptParameters {
+    function Get-PackageScriptParameters {
         <#
             .SYNOPSIS
             Returns a splattable hashtable of arguments for a script,
@@ -62,7 +62,7 @@ if (
         # Check what parameters the script has
         $script = [System.Management.Automation.Language.Parser]::ParseFile($ScriptPath, [ref]$null, [ref]$null)
         $scriptParameters = $Script.ParamBlock.Parameters.Name.VariablePath.UserPath
-    
+
         # For each of those in PackageParameters, add it to the splat
         foreach ($parameter in $scriptParameters) {
             if ($packageParameters.ContainsKey($parameter)) {
@@ -127,7 +127,7 @@ if (
             if (-not $packageScript) {$packageScript = Get-ScriptRunnerParameter -Name 'packageScript'}
             if ($packageScript) {
                 Write-Debug "Finding Parameters for package script '$packageScript'"
-                $scriptParameters = Get-ScriptParameters -PackageParameters (Get-ScriptRunnerParameter 'packageParameters') -Script $packageScript
+                $scriptParameters = Get-PackageScriptParameters -Script $packageScript -PackageParameters (Get-ScriptRunnerParameter 'packageParameters')
 
                 Write-Debug "Running package script '$packageScript' with $($scriptParameters.Keys.Count) matching package parameters"
                 try {
@@ -142,4 +142,6 @@ if (
     }
 
     Set-PSBreakpoint @Breakpoint
+} else {
+    Write-Debug "PackageParams is supported by Chocolatey $($env:CHOCOLATEY_VERSION)."
 }

@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "WVXFR4X9GpM=",
+  "success": true,
+  "projectFilePath": "c:\\Users\\james\\Source\\GitHub\\PackageModuleParams\\src\\PackageParams\\PackageParams.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\james\\.nuget\\packages\\microsoft.netframework.referenceassemblies\\1.0.3\\microsoft.netframework.referenceassemblies.1.0.3.nupkg.sha512",
+    "C:\\Users\\james\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net481\\1.0.3\\microsoft.netframework.referenceassemblies.net481.1.0.3.nupkg.sha512",
+    "C:\\Users\\james\\.nuget\\packages\\powershellstandard.library\\5.1.0-preview-06\\powershellstandard.library.5.1.0-preview-06.nupkg.sha512"
+  ],
+  "logs": []
+}

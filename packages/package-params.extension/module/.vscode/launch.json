@@ -1,0 +1,17 @@
+{
+    "configurations": [
+        {
+            "name": "PowerShell Attach to Host Process",
+            "type": "PowerShell",
+            "request": "attach"
+        },
+        {
+            "name": "PowerShell: Binary Module Interactive",
+            "type": "PowerShell",
+            "request": "launch",
+            "script": "Import-Module C:\\Users\\james\\Source\\GitHub\\PackageModuleParams\\src\\PackageParams.psd1",
+            "createTemporaryIntegratedConsole": true,
+            "attachDotnetDebugger": true
+        }
+    ]
+}

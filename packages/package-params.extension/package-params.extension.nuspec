@@ -4,7 +4,7 @@ enclosed in quotation marks, you should use an editor that supports UTF-8, not t
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
     <metadata>
         <id>package-params.extension</id>
-        <version>1.0.0</version>
+        <version>0.0.1</version>
         <owners>jpruskin</owners>
         <title>Package Params Extension</title>
         <authors>jpruskin</authors>
@@ -14,11 +14,50 @@ enclosed in quotation marks, you should use an editor that supports UTF-8, not t
         <projectSourceUrl>https://github.com/jpruskin/ChocolateyPackages/tree/master/packages/package-params.extension</projectSourceUrl>
         <packageSourceUrl>https://github.com/jpruskin/ChocolateyPackages/tree/master/packages/package-params.extension</packageSourceUrl>
         <bugTrackerUrl>https://github.com/jpruskin/ChocolateyPackages/issues</bugTrackerUrl>
-        <tags>extension package development</tags>
-        <summary>Extension package to provide package parameter support.</summary>
+        <tags>parameters extension package development</tags>
+        <summary>Extension package to provide a package parameters to versions of Chocolatey before PackageParams were supported.</summary>
         <releaseNotes>https://github.com/JPRuskin/ChocolateyPackages/commits/main/packages/package-params.extension</releaseNotes>
         <description><![CDATA[
-This extension provides logic that can be used to provide Chocolatey packages with Package Parameters during development, in versions prior to this being implemented in Chocolatey.
+# Package Params
+
+This extension provides Chocolatey with the ability to recognise and pass values to param blocks in package scripts.
+
+This feature is available in Chocolatey 2.5.0 and above, but you can depend on this package to enable backwards-compatibility with older versions.
+
+This can be used with or without `Get-PackageParameters`, as it will not effect the functionality of that method.
+
+At a basic level, you should only use parameters involving `string` (and things that can be cast from string) and `switch` types - however, by implementing Argument Transformation attributes you can accept more interesting types!
+
+You can use parameter attributes such as `Mandatory`, parameter sets, validation such as `ValidateScript`, `ValidateSet`, and more - but you may need to write handling to display messages to the user if validation fails.
+
+## Why?
+
+This feature is in aid of several types of folk:
+
+- Tech-savvy Package Users
+    If you read package install scripts before you install them for the first time, good for you!
+    This feature should help people write packages that make it clearer what you can pass as a parameter, what default value it might have, and what's acceptable.
+    You'll know where to look, because it'll always be at the top of the script - and with luck, it'll have parameter help and any validation in the same place.
+
+- Package Maintainers
+    If you maintain packages, and have implemented parameter handling in more than a few of them, you may appreciate this new PowerShell-forward method (as well as the ability to benefit from various parameter decorations).
+    This change aims to 
+
+
+- Package Repositories
+    This will also make it easier for package repositories, such as the Chocolatey Community Repository, to know about potential parameters on a given package.
+
+## Supported Decorations
+
+### Parameter Attributes
+
+
+
+### Parameter Validation
+
+### Argument Transformation
+
+### Argument Help
     ]]></description>
     </metadata>
     <files>
