@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <!-- == PACKAGE SPECIFIC SECTION == -->
+    <id>unrealtournament</id>
+    <version>$version$</version>
+    <owners></owners>
+    <packageSourceUrl>https://github.com/jpruskin/ChocolateyPackages/tree/main/packages/unrealtournament/unrealtournament.nuspec</packageSourceUrl>
+    <!--packageSourceUrl>https://github.com/jpruskin/ChocolateyPackages/tree/main//unrealtournament.nuspec</packageSourceUrl-->
+    <!-- ============================== -->
+
+    <!-- == SOFTWARE SPECIFIC SECTION == -->
+    <title></title>
+    <authors>jpruskin</authors>
+    <projectUrl>https://www.epicgames.com/unrealtournament/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <summary></summary>
+    <description>Unreal Tournament is a banger!</description>
+    <!-- =============================== -->
+
+    <dependencies>
+      <!-- dependency id="" version="" / -->
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>

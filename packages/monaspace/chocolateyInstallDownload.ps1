@@ -26,7 +26,7 @@ foreach ($Font in Get-ChildItem -Path "$toolsDir/fonts" -Include ('*.otf', '*.tt
     $null = Set-ItemProperty @FontRegistryEntry
 
     # We leave the installed fonts in the tools directory so we can clean up later, but don't need the file content
-    Set-Content $Font.FullName -Value $null
+    Set-Content -LiteralPath $Font.PSPath -Value $null
 }
 
 # Cleanup Unrequired Files

@@ -1,0 +1,55 @@
+{
+    "Define ToolsDir": {
+        "prefix": "$toolsDir =",
+        "body": "\\$toolsDir = Split-Path \\$MyInvocation.MyCommand.Definition -Parent",
+        "description": "The line I always forget for the 'accepted' method for defining ToolsDir",
+        "scope": "powershell",
+        "isFileTemplate": false
+    },
+    "Community Nuspec": {
+        "prefix": "",
+        "body": [
+
+        ],
+        "description": "A basic Nuspec, with all requirements for the Chocolatey Community Repository",
+        "scope": "xml",
+        "isFileTemplate": true
+    },
+    "Minimal Nuspec": {
+        "prefix": "",
+        "body": [
+            "<?xml version=\"1.0\" encoding=\"utf-8\"?>",
+            "<!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->",
+            "<package xmlns=\"http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd\">",
+            "  <metadata>",
+            "    <!-- == PACKAGE SPECIFIC SECTION == -->",
+            "    <id>$TM_FILENAME_BASE</id>",
+            "    <version>\\$version$</version>",
+            "    <owners></owners>",
+            "    <packageSourceUrl>https://github.com/jpruskin/ChocolateyPackages/tree/main/${RELATIVE_FILEPATH/[\\\\]/\\//g}</packageSourceUrl>",
+            "    <!--packageSourceUrl>https://github.com/jpruskin/ChocolateyPackages/tree/main/${RELATIVE_FILEPATH/(?:.+)([\\\\])/${1:+/}/g}</packageSourceUrl-->",
+            "    <!-- ============================== -->",
+            "",
+            "    <!-- == SOFTWARE SPECIFIC SECTION == -->",
+            "    <title>$0</title>",
+            "    <authors>jpruskin</authors>",
+            "    <projectUrl></projectUrl>",
+            "    <requireLicenseAcceptance>false</requireLicenseAcceptance>",
+            "    <summary></summary>",
+            "    <description></description>",
+            "    <!-- =============================== -->",
+            "",
+            "    <dependencies>",
+            "      <!-- dependency id=\"\" version=\"\" / -->",
+            "    </dependencies>",
+            "  </metadata>",
+            "  <files>",
+            "    <file src=\"tools\\**\" target=\"tools\" />",
+            "  </files>",
+            "</package>"
+        ],
+        "description": "A basic Nuspec, not suited for the Chocolatey Community Repository",
+        "scope": "xml",
+        "isFileTemplate": true
+    }
+}
