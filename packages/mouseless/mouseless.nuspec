@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <!-- == PACKAGE SPECIFIC SECTION == -->
+    <id>mouseless</id>
+    <version>$version$</version>
+    <owners>jpruskin</owners>
+    <packageSourceUrl>https://github.com/jpruskin/ChocolateyPackages/tree/main/packages/mouseless/</packageSourceUrl>
+    <!-- ============================== -->
+
+    <!-- == SOFTWARE SPECIFIC SECTION == -->
+    <title>Mouseless</title>
+    <authors>Sonuscape LLC</authors>
+    <projectUrl>https://mouseless.click/</projectUrl>
+    <docsUrl>https://mouseless.click/docs/</docsUrl>
+    <bugTrackerUrl>https://github.com/croian/mouseless/issues</bugTrackerUrl>
+    <releaseNotes>https://github.com/croian/mouseless/releases</releaseNotes>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <summary>Lightning-fast mouse control with the keyboard.</summary>
+    <description><![CDATA[# Mouseless
+
+## 1, 2, click
+
+Click anywhere on-screen in less than 2 seconds, simply by typing a few coordinates.
+
+Other solutions ("mouse keys") take up to 10 seconds per click.
+
+An on-screen overlay guides you, so no memorization is needed.
+
+## Why Mouseless?
+
+### Complete Control
+
+Click, move, drag, drop, and scroll. Double and triple click. Left, right, middle, back, and forward buttons. Mouseless does it all.
+
+### Supercharged Productivity
+
+Mouseless saves you precious time when a keyboard shortcut isn't practical, available, or known. No more reaching for those one-off clicks!
+
+### Elevated Accessibility
+
+People who can't use mice deserve an efficient, full-featured alternative -- Mouseless is exactly that.
+
+### Health-saving Ergonomics
+
+Laptop trackpads can be dangerous for prolonged use -- Mouseless prevents strain and injury by reducing reliance on trackpads.
+
+## Licensing
+
+This product requires a purchased license for use, but you can activate a two week trial after installation.
+    ]]></description>
+    <!-- =============================== -->
+
+    <dependencies>
+      <!-- dependency id="" version="" / -->
+    </dependencies>
+  </metadata>
+  <files>
+    <file src=".\tools\**" target="tools" />
+  </files>
+</package>
