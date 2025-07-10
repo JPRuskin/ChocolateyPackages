@@ -24,18 +24,11 @@ if ($LatestVersion -in $AvailablePackages.properties.version) {
 # Update the install script
 $InstallPs1 = Get-Content $PSScriptRoot\tools\chocolateyInstall.ps1
 $Replacements = @{
-    "Url"            = $DownloadPage.Links.Where({$_.href.EndsWith('Qobuz_ia32_Installer.exe')}, 1).href
     "Url64bit"       = $URL64
     "DisplayVersion" = $DisplayVersion
 }
 
 $ProgressPreference = "SilentlyContinue"
-
-$Replacements.Checksum = (Get-FileHash -Algorithm SHA256 -InputStream (
-        [System.IO.MemoryStream]::New(
-        (Invoke-WebRequest $Replacements.url).Content
-        )
-    )).Hash
 
 $Replacements.Checksum64 = (Get-FileHash -Algorithm SHA256 -InputStream (
         [System.IO.MemoryStream]::New(
