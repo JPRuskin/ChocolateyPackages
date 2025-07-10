@@ -57,4 +57,4 @@ jobs:
           Get-ChildItem -Filter *.nupkg | ForEach-Object {
             choco push $_.FullName --source https://push.chocolatey.org/ --k="${{ env.NugetApiKey }}"
           }
-        if: env.new_packages > 0 && env.NugetApiKey != ''
+        if: '!cancelled() && env.new_packages > 0 && env.NugetApiKey != '''''
