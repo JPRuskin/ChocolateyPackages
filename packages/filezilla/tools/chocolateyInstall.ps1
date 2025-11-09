@@ -1,15 +1,19 @@
-﻿$ErrorActionPreference = 'Stop'
-
-$toolsPath      = Split-Path $MyInvocation.MyCommand.Definition
+$ErrorActionPreference = 'Stop'
 
 $packageArgs = @{
   packageName    = 'filezilla'
   fileType       = $fileType
-  file           = Get-Item $toolsPath\*_x32.exe
-  file64         = Get-Item $toolsPath\*_x64.exe
+  file           = Get-Item "$PSScriptRoot\FileZilla_*_win32-setup.exe"
+  file64         = Get-Item "$PSScriptRoot\FileZilla_*_win64-setup.exe"
   silentArgs     = '/S'
   validExitCodes = @(0, 1223)
   softwareName   = 'FileZilla 3*'
 }
 Install-ChocolateyInstallPackage @packageArgs
-Get-ChildItem $toolsPath\*.exe | ForEach-Object { Remove-Item $_ -ea 0; if (Test-Path $_) { Set-Content -Value "" -Path "$_.ignore" }}
+
+Get-ChildItem $PSScriptRoot\*.exe | ForEach-Object {
+  Remove-Item $_ -ErrorAction SilentlyContinue
+  if (Test-Path $_) {
+    Set-Content -Value "" -Path "$_.ignore"
+  }
+}
