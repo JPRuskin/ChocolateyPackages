@@ -8,7 +8,7 @@ Add-Type -AssemblyName $env:ChocolateyInstall\choco.exe
 
 $LatestRelease = Invoke-RestMethod "https://api.github.com/repos/githubnext/monaspace/releases/latest"
 $LatestVersion = [Chocolatey.NugetVersionExtensions]::ToNormalizedStringChecked($LatestRelease.tag_name.TrimStart('v'))
-$LatestUrl = $LatestRelease.assets.Where{$_.name -eq "monaspace-v$($LatestRelease.tag_name.TrimStart('v')).zip"}.browser_download_url
+$LatestUrl = $LatestRelease.assets.Where{$_.name -eq "monaspace-static-v$($LatestRelease.tag_name.TrimStart('v')).zip"}.browser_download_url
 
 $AvailablePackages = Invoke-RestMethod "https://community.chocolatey.org/api/v2/Packages()?`$filter=((Id eq '$PackageId'))&includePrerelease=true"
 

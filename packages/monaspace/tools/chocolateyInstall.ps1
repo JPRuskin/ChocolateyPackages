@@ -5,7 +5,7 @@ $packageArgs = @{
     PackageName    = $env:ChocolateyPackageName
     FileFullPath   = Join-Path $toolsDir "monaspace.zip"
     Destination    = "$toolsDir/fonts"
-    Checksum       = '7FF2317C7BDAED8E81DCBE1314E6AB12AD9641B7DDF921E996A227FF4EC7752F'
+    Checksum       = ''
     ChecksumType   = 'sha256'
 }
 
@@ -28,7 +28,3 @@ foreach ($Font in Get-ChildItem -Path "$toolsDir/fonts" -Include ('*.otf', '*.tt
     # We leave the installed fonts in the tools directory so we can clean up later, but don't need the file content
     Set-Content -LiteralPath $Font.PSPath -Value $null
 }
-
-# Cleanup Unrequired Files
-Get-Item $toolsDir/fonts/monaspace-*/docs | Remove-Item -Recurse
-Get-Item $toolsDir/fonts/monaspace-*/fonts/webfonts | Remove-Item -Recurse
